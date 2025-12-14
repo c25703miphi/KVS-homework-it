@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кредит на любые цели | НИЯУ МИФИ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ОСНОВНЫЕ СТИЛИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ШАПКА - СВЕТЛО-СИНИЙ ЦВЕТ */
+        .header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #3a7bd5 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: white;
+            font-weight: 300;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav-menu a.active,
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-login {
+            background: white;
+            color: #2c5aa0;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-login:hover {
+            background: #2c5aa0;
+            color: white;
+            border-color: white;
+        }
+
+        /* ГЕРОЙ-СЕКЦИЯ - СВЕТЛО-СИНИЙ */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 90, 160, 0.9), rgba(58, 123, 213, 0.9));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .feature i {
+            font-size: 40px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* ОСНОВНАЯ ФОРМА */
+        .main {
+            padding: 60px 0;
+        }
+
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-top: -80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .calculator h2 {
+            color: #2c5aa0;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ШАГИ ПРОГРЕССА - БОЛЬШЕ РАССТОЯНИЕ */
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 8%;
+            right: 8%;
+            height: 3px;
+            background: #e0e0e0;
+            z-index: 0;
+        }
+
+        .step {
+            position: relative;
+            text-align: center;
+            flex: 1;
+            color: #999;
+            font-weight: 500;
+            z-index: 1;
+            padding-top: 35px;
+            min-width: 120px;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 45px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .step.active {
+            color: #2c5aa0;
+            font-weight: 600;
+        }
+
+        .step.active::before {
+            background: #2c5aa0;
+        }
+
+        .step:nth-child(1)::before { content: '1'; }
+        .step:nth-child(2)::before { content: '2'; }
+        .step:nth-child(3)::before { content: '3'; }
+        .step:nth-child(4)::before { content: '4'; }
+        .step:nth-child(5)::before { content: '5'; }
+
+        /* ФОРМА - БОЛЬШЕ РАССТОЯНИЕ МЕЖДУ ЭЛЕМЕНТАМИ */
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #333;
+            font-size: 17px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border 0.3s;
+            margin-top: 8px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2c5aa0;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+
+        .input-with-slider {
+            position: relative;
+        }
+
+        .input-with-slider input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .input-with-slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            background: #2c5aa0;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .range-value {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #2c5aa0;
+            font-size: 20px;
+            padding: 8px;
+            background: #f0f7ff;
+            border-radius: 8px;
+        }
+
+        small {
+            display: block;
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* ВОПРОСЫ - БОЛЬШЕ ПРОБЕЛОВ */
+        .question {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #2c5aa0;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+            font-size: 17px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-height: 60px;
+        }
+
+        .option:hover {
+            border-color: #2c5aa0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 90, 160, 0.1);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 15px;
+            accent-color: #2c5aa0;
+            width: 20px;
+            height: 20px;
+        }
+
+        .option-text {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        .option input[type="radio"]:checked + .option-text {
+            font-weight: 600;
+            color: #2c5aa0;
+        }
+
+        /* КНОПКИ - БОЛЬШЕ ПРОБЕЛОВ */
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 35px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .btn-prev,
+        .btn-next,
+        .btn-apply {
+            padding: 18px 35px;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+
+        .btn-prev {
+            background: #f8f9fa;
+            color: #666;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-prev:hover {
+            background: #e9ecef;
+            border-color: #2c5aa0;
+            color: #2c5aa0;
+        }
+
+        .btn-next,
+        .btn-apply {
+            background: linear-gradient(135deg, #2c5aa0 0%, #3a7bd5 100%);
+            color: white;
+        }
+
+        .btn-next:hover,
+        .btn-apply:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(44, 90, 160, 0.3);
+        }
+
+        .btn-apply {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        /* РЕЗУЛЬТАТ */
+        .result-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 18px;
+            padding: 35px;
+            margin: 40px 0;
+            border: 3px solid #2c5aa0;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #dee2e6;
+        }
+
+        .risk-level {
+            font-size: 36px;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+
+        .risk-status {
+            font-size: 24px;
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .result-details {
+            margin-bottom: 35px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 2px solid #e9ecef;
+            align-items: center;
+            min-height: 55px;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item.highlight {
+            background: rgba(44, 90, 160, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .rate {
+            font-size: 36px;
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .result-message {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #28a745;
+            font-size: 19px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ИСПРАВЛЕННЫЙ ФИНАЛЬНЫЙ БЛОК - ТЕПЕРЬ ВИДНО "ЖДЁМ ВАС!" */
+        .final-message {
+            text-align: center;
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #2c5aa0 0%, #3a7bd5 100%);
+            color: white;
+            border-radius: 18px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(44, 90, 160, 0.2);
+        }
+
+        .final-message h2 {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 32px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .final-message p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ФУТЕР */
+        .footer {
+            background: #2c5aa0;
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 80px;
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .progress-steps {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .progress-steps::before {
+                display: none;
+            }
+            
+            .step {
+                text-align: left;
+                padding-left: 70px;
+                padding-top: 0;
+            }
+            
+            .step::before {
+                left: 0;
+                transform: none;
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .btn-prev,
+            .btn-next,
+            .btn-apply {
+                width: 100%;
+            }
+            
+            .final-message {
+                padding: 30px 20px;
+            }
+            
+            .final-message h2 {
+                font-size: 26px;
+            }
+        }
+
+        /* ЦВЕТА РИСКОВ */
+        .low-risk .risk-level { color: #28a745; }
+        .medium-risk .risk-level { color: #ffc107; }
+        .high-risk .risk-level { color: #dc3545; }
+        
+        .low-risk .risk-status { color: #28a745; }
+        .medium-risk .risk-status { color: #ffc107; }
+        .high-risk .risk-status { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <!-- ШАПКА С НИЯУ МИФИ -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">НИЯУ <span>МИФИ</span></div>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Частным лицам</a></li>
+                    <li><a href="#">Малому бизнесу и ИП</a></li>
+                    <li><a href="#">Среднему и крупному бизнесу</a></li>
+                </ul>
+                <button class="btn-login"><i class="fas fa-user"></i> Войти</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ГЕРОЙ-СЕКЦИЯ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Кредит на любые цели</h1>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <h3>За 3 минуты<br>решение по кредиту</h3>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>Доставка кредита<br>на бесплатную дебетовую карту</h3>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Управляй кредитом онлайн<br>в приложении или на сайте</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОСНОВНАЯ ФОРМА -->
+    <main class="main">
+        <div class="container">
+            <div class="calculator">
+                <h2><i class="fas fa-calculator"></i> Расчёт кредита</h2>
+                
+                <!-- ШАГИ ПРОГРЕССА -->
+                <div class="progress-steps">
+                    <div class="step active">1. Сумма и срок</div>
+                    <div class="step">2. Контактные данные</div>
+                    <div class="step">3. О Вас</div>
+                    <div class="step">4. Финансы</div>
+                    <div class="step">5. Результат</div>
+                </div>
+
+                <!-- ШАГ 1: СУММА И СРОК -->
+                <div id="step1" class="form-step active">
+                    <div class="form-group">
+                        <label for="amount">Сумма кредита (руб.)</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="amount" value="1000000" min="10000" max="30000000" step="10000">
+                            <input type="range" id="amountSlider" min="10000" max="30000000" step="10000" value="1000000">
+                            <span class="range-value">1 000 000 ₽</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="term">Срок кредита (месяцев)</label>
+                        <div class="input-with-slider">
+                            <input type="number" id="term" value="36" min="3" max="360">
+                            <input type="range" id="termSlider" min="3" max="360" value="36">
+                            <span class="range-value">36 месяцев</span>
+                        </div>
+                        <small>Минимальный срок - 3 месяца. Максимальный срок - 30 лет</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose">Цель кредита</label>
+                        <select id="purpose">
+                            <option value="car">Покупка автомобиля</option>
+                            <option value="house">Покупка недвижимости</option>
+                            <option value="renovation">Ремонт</option>
+                            <option value="education">Образование</option>
+                            <option value="business">Бизнес</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn-next" onclick="nextStep(2)">Далее →</button>
+                </div>
+
+                <!-- ШАГ 2: КОНТАКТНЫЕ ДАННЫЕ -->
+                <div id="step2" class="form-step">
+                    <div class="form-group">
+                        <label for="fio">ФИО</label>
+                        <input type="text" id="fio" placeholder="Иванов Иван Иванович" value="Иванов Иван Иванович">
+                        <small>Укажите точно, как в паспорте</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Номер телефона</label>
+                        <input type="tel" id="phone" placeholder="8 985 888 88 88" value="8 985 888 88 88">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Электронная почта</label>
+                        <input type="email" id="email" placeholder="example@mephi.ru" value="111@mephi.ru">
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn-prev" onclick="prevStep(1)">← Назад</button>
+                        <button class="btn-next" onclick="nextStep(3)">Далее →</button>
+                    </div>
+                </div>
+
+                <!-- ШАГ 3: О ВАС -->
+                <div id="step3" class="form-step">
+                    <h3 style="margin-bottom: 30px; color: #2c5aa0;">3. О Вас</h3>
+                    
+                    <!-- ВОПРОС 1 -->
+                    <div class="question">
+                        <label>1. Являетесь ли Вы гражданином РФ?</label>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="citizen" value="да" checked>
+                                <span class="option-text">Да</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="citizen" value="нет">
+                                <span class="option-text">Нет</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- ВОПРОС 2 -->
+                    <div class="question">
+                        <label>2. Укажите Ваш возраст:</label>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="age" value="а">
+                                <span class="option-text">Менее 18</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="age" value="б">
+                                <span class="option-text">18-22</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="age" value="в">
+                                <span class="option-text">23-27</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="age" value="г" checked>
+                                <span class="option-text">28-45</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="age" value="д">
+                                <span class="option-text">46-60</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="age" value="е">
+                                <span class="option-text">60-80</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="age" value="ж">
+                                <span class="option-text">Более 80</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- ВОПРОС 3 -->
+                    <div class="question">
+                        <label>3. Укажите Ваше семейное положение:</label>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="marital" value="а" checked>
+                                <span class="option-text">Женат/замужем</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="marital" value="б">
+                                <span class="option-text">Холост/незамужем</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="marital" value="в">
+                                <span class="option-text">Разведён/разведена</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- ВОПРОС 4 -->
+                    <div class="question">
+                        <label>4. Есть ли у Вас дети?</label>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="children" value="а" checked>
+                                <span class="option-text">Нет</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="children" value="б">
+                                <span class="option-text">1</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="children" value="в">
+                                <span class="option-text">2</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="children" value="г">
+                                <span class="option-text">3 и более</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn-prev" onclick="prevStep(2)">← Назад</button>
+                        <button class="btn-next" onclick="nextStep(4)">Далее →</button>
+                    </div>
+                </div>
+
+                <!-- ШАГ 4: ФИНАНСЫ -->
+                <div id="step4" class="form-step">
+                    <h3 style="margin-bottom: 30px; color: #2c5aa0;">4. Финансы</h3>
+                    
+                    <!-- ВОПРОС 5 -->
+                    <div class="question">
+                        <label>5. Есть ли у Вас автомобиль?</label>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="car" value="а">
+                                <span class="option-text">Нет</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="car" value="б" checked>
+                                <span class="option-text">Да, новая иномарка</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="car" value="в">
+                                <span class="option-text">Да, старая иномарка</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="car" value="г">
+                                <span class="option-text">Да, новый отечественный</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="car" value="д">
+                                <span class="option-text">Да, старый отечественный</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- ВОПРОС 6 -->
+                    <div class="question">
+                        <label>6. Есть ли у Вас в собственности недвижимость?</label>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="property" value="а">
+                                <span class="option-text">Нет</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="property" value="б" checked>
+                                <span class="option-text">Да</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- ВОПРОС 7 -->
+                    <div class="question">
+                        <label>7. Каков Ваш официальный доход? (руб./мес)</label>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="income" value="а">
+                                <span class="option-text">Более 1 млн. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="income" value="б">
+                                <span class="option-text">600-1000 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="income" value="в">
+                                <span class="option-text">400-599 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="income" value="г">
+                                <span class="option-text">200-399 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="income" value="д" checked>
+                                <span class="option-text">90-199 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="income" value="е">
+                                <span class="option-text">70-89 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="income" value="ж">
+                                <span class="option-text">50-69 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="income" value="з">
+                                <span class="option-text">30-49 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="income" value="и">
+                                <span class="option-text">Менее 30 тыс. руб.</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- ВОПРОС 8 -->
+                    <div class="question">
+                        <label>8. Каков общий доход семьи? (руб./мес)</label>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="familyIncome" value="а">
+                                <span class="option-text">Более 1 млн. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="familyIncome" value="б">
+                                <span class="option-text">600-1000 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="familyIncome" value="в">
+                                <span class="option-text">400-599 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="familyIncome" value="г" checked>
+                                <span class="option-text">200-399 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="familyIncome" value="д">
+                                <span class="option-text">90-199 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="familyIncome" value="е">
+                                <span class="option-text">70-89 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="familyIncome" value="ж">
+                                <span class="option-text">50-69 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="familyIncome" value="з">
+                                <span class="option-text">30-49 тыс. руб.</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="familyIncome" value="и">
+                                <span class="option-text">Менее 30 тыс. руб.</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn-prev" onclick="prevStep(3)">← Назад</button>
+                        <button class="btn-next" onclick="calculateCredit()">Рассчитать результат</button>
+                    </div>
+                </div>
+
+                <!-- ШАГ 5: РЕЗУЛЬТАТ -->
+                <div id="step5" class="form-step">
+                    <h3 style="margin-bottom: 30px; color: #2c5aa0;"><i class="fas fa-chart-line"></i> Ваш репутационный риск</h3>
+                    
+                    <div class="result-card">
+                        <div class="result-header" id="resultRisk">
+                            <span class="risk-level">Низкий</span>
+                            <span class="risk-status">кредит одобрен</span>
+                        </div>
+                        
+                        <div class="result-details">
+                            <div class="result-item">
+                                <span>Сумма кредита:</span>
+                                <strong id="resultAmount">1 000 000 ₽</strong>
+                            </div>
+                            <div class="result-item">
+                                <span>Срок кредита:</span>
+                                <strong id="resultTerm">36 месяцев</strong>
+                            </div>
+                            <div class="result-item">
+                                <span>Цель кредита:</span>
+                                <strong id="resultPurpose">Покупка автомобиля</strong>
+                            </div>
+                            <div class="result-item">
+                                <span>Ваши баллы:</span>
+                                <strong id="resultScore">14</strong>
+                            </div>
+                            <div class="result-item highlight">
+                                <span>Ставка кредита:</span>
+                                <strong class="rate" id="resultRate">20%</strong>
+                            </div>
+                            <div class="result-item">
+                                <span>Максимальная сумма:</span>
+                                <strong id="resultMaxAmount">30 000 000 ₽</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="result-message" id="resultMessage">
+                            Низкие риски. Возможен кредит со ставкой 21% с суммой до 30 000 000.
+                        </div>
+                    </div>
+                    
+                    <!-- ИСПРАВЛЕННЫЙ БЛОК "ЖДЁМ ВАС!" - ТЕПЕРЬ ХОРОШО ВИДНО -->
+                    <div class="final-message">
+                        <h2><i class="fas fa-handshake"></i> Ждём Вас!</h2>
+                        <p>Наш менеджер свяжется с вами в течение 15 минут для уточнения деталей.</p>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button class="btn-prev" onclick="prevStep(4)">← Назад</button>
+                        <button class="btn-apply" onclick="applyCredit()">Оформить заявку</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 НИЯУ МИФИ. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript код (остаётся тем же) -->
+    <script>
+        // Текущий шаг
+        let currentStep = 1;
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            // Связь полей ввода и слайдеров
+            const amountInput = document.getElementById('amount');
+            const amountSlider = document.getElementById('amountSlider');
+            const amountValue = document.querySelector('.input-with-slider .range-value');
+            
+            const termInput = document.getElementById('term');
+            const termSlider = document.getElementById('termSlider');
+            const termValue = document.querySelectorAll('.input-with-slider .range-value')[1];
+            
+            // Синхронизация суммы
+            function updateAmount() {
+                const value = parseInt(amountInput.value);
+                amountSlider.value = value;
+                amountValue.textContent = formatCurrency(value) + ' ₽';
+            }
+            
+            function updateAmountFromSlider() {
+                amountInput.value = amountSlider.value;
+                updateAmount();
+            }
+            
+            // Синхронизация срока
+            function updateTerm() {
+                const value = parseInt(termInput.value);
+                termSlider.value = value;
+                termValue.textContent = value + ' месяцев';
+            }
+            
+            function updateTermFromSlider() {
+                termInput.value = termSlider.value;
+                updateTerm();
+            }
+            
+            // Слушатели событий
+            amountInput.addEventListener('input', updateAmount);
+            amountSlider.addEventListener('input', updateAmountFromSlider);
+            
+            termInput.addEventListener('input', updateTerm);
+            termSlider.addEventListener('input', updateTermFromSlider);
+            
+            // Инициализация значений
+            updateAmount();
+            updateTerm();
+        });
+
+        // Навигация по шагам
+        function nextStep(step) {
+            if (validateStep(currentStep)) {
+                showStep(step);
+            }
+        }
+
+        function prevStep(step) {
+            showStep(step);
+        }
+
+        function showStep(step) {
+            // Скрыть текущий шаг
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.querySelectorAll('.step')[currentStep - 1].classList.remove('active');
+            
+            // Показать новый шаг
+            currentStep = step;
+            document.getElementById(`step${step}`).classList.add('active');
+            document.querySelectorAll('.step')[step - 1].classList.add('active');
+            
+            // Прокрутка к верху
+            window.scrollTo({ top: document.querySelector('.calculator').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Валидация шага
+        function validateStep(step) {
+            if (step === 1) {
+                const amount = document.getElementById('amount').value;
+                const term = document.getElementById('term').value;
+                
+                if (!amount || amount < 10000) {
+                    alert('Минимальная сумма кредита - 10 000 рублей');
+                    return false;
+                }
+                
+                if (!term || term < 3) {
+                    alert('Минимальный срок кредита - 3 месяца');
+                    return false;
+                }
+            }
+            
+            if (step === 2) {
+                const fio = document.getElementById('fio').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                
+                if (!fio || fio.split(' ').length < 3) {
+                    alert('Введите ФИО полностью (как в паспорте)');
+                    return false;
+                }
+                
+                if (!phone || phone.replace(/\D/g, '').length < 10) {
+                    alert('Введите корректный номер телефона');
+                    return false;
+                }
+                
+                if (!email || !email.includes('@')) {
+                    alert('Введите корректный email');
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+
+        // Расчет кредита (логика из Python)
+        function calculateCredit() {
+            // Получение данных из формы
+            const formData = {
+                citizen: document.querySelector('input[name="citizen"]:checked').value,
+                age: document.querySelector('input[name="age"]:checked').value,
+                marital: document.querySelector('input[name="marital"]:checked').value,
+                children: document.querySelector('input[name="children"]:checked').value,
+                car: document.querySelector('input[name="car"]:checked').value,
+                property: document.querySelector('input[name="property"]:checked').value,
+                income: document.querySelector('input[name="income"]:checked').value,
+                familyIncome: document.querySelector('input[name="familyIncome"]:checked').value
+            };
+            
+            // Расчет баллов (логика из Python)
+            let score = 0;
+            
+            // Вопрос 1: Гражданство
+            if (formData.citizen === "да") {
+                score = 1;
+            }
+            
+            // Вопрос 2: Возраст
+            switch(formData.age) {
+                case 'б': score += 1; break;
+                case 'в': score += 2; break;
+                case 'г': score += 2; break;
+                case 'д': score += 1; break;
+            }
+            
+            // Вопрос 3: Семейное положение
+            if (formData.marital === "а" || formData.marital === "б") {
+                score -= 1;
+            }
+            
+            // Вопрос 4: Дети
+            switch(formData.children) {
+                case 'а': score += 2; break;
+                case 'б': score += 1; break;
+                case 'в': score += 0.5; break;
+                case 'г': score -= 2; break;
+            }
+            
+            // Вопрос 5: Автомобиль
+            switch(formData.car) {
+                case 'б': score += 3; break;
+                case 'в': score += 2; break;
+                case 'г': score += 1; break;
+                case 'д': score += 0.5; break;
+            }
+            
+            // Вопрос 6: Недвижимость
+            if (formData.property === 'б') {
+                score += 4;
+            } else if (formData.property === 'а') {
+                score -= 2;
+            }
+            
+            // Вопрос 7: Доход
+            switch(formData.income) {
+                case 'а': score += 5; break;
+                case 'б': score += 4; break;
+                case 'в': score += 3; break;
+                case 'г': score += 2; break;
+                case 'д':
+                case 'е': score += 1; break;
+                case 'з': score -= 1; break;
+                case 'и': score -= 2; break;
+            }
+            
+            // Вопрос 8: Доход семьи
+            switch(formData.familyIncome) {
+                case 'а': score += 3; break;
+                case 'б': score += 2; break;
+                case 'в':
+                case 'г': score += 1; break;
+                case 'з': score -= 2; break;
+                case 'и': score -= 3; break;
+            }
+            
+            // Определение результата
+            let result = {
+                approved: true,
+                rate: 0,
+                maxAmount: 0,
+                risk: '',
+                message: ''
+            };
+            
+            // Проверка автоматического отказа
+            if (formData.citizen === "нет" || formData.age === "а" || formData.age === "е") {
+                result.approved = false;
+                result.message = "Кредит не одобрен.";
+                result.risk = "Высокий";
+            } else if (score < 2) {
+                result.approved = false;
+                result.message = "Кредит не одобрен.";
+                result.risk = "Высокий";
+            } else if (score >= 2 && score <= 4) {
+                result.rate = 50;
+                result.maxAmount = 50000;
+                result.risk = "Высокий";
+                result.message = "Высокие риски. Возможен кредит со ставкой 50% с суммой до 50 000.";
+            } else if (score >= 5 && score <= 6) {
+                result.rate = 40;
+                result.maxAmount = 250000;
+                result.risk = "Высокий";
+                result.message = "Высокие риски. Возможен кредит со ставкой 40% с суммой до 250 000.";
+            } else if (score >= 7 && score <= 9) {
+                result.rate = 30;
+                result.maxAmount = 1000000;
+                result.risk = "Средний";
+                result.message = "Средние риски. Возможен кредит со ставкой 30% с суммой до 1 000 000.";
+            } else if (score >= 10 && score <= 11) {
+                result.rate = 25;
+                result.maxAmount = 3000000;
+                result.risk = "Средний";
+                result.message = "Средние риски. Возможен кредит со ставкой 25% с суммой до 3 000 000.";
+            } else if (score >= 12 && score <= 13) {
+                result.rate = 23;
+                result.maxAmount = 10000000;
+                result.risk = "Низкий";
+                result.message = "Низкие риски. Возможен кредит со ставкой 23% с суммой до 10 000 000.";
+            } else if (score >= 15) {
+                result.rate = 21;
+                result.maxAmount = 30000000;
+                result.risk = "Низкий";
+                result.message = "Низкие риски. Возможен кредит со ставкой 21% с суммой до 30 000 000.";
+            } else {
+                result.approved = false;
+                result.message = "Error";
+                result.risk = "Не определен";
+            }
+            
+            // Обновление UI с результатами
+            updateResultUI(score, result);
+            
+            // Переход к шагу с результатом
+            showStep(5);
+        }
+
+        // Обновление результатов на странице
+        function updateResultUI(score, result) {
+            // Получение данных из формы
+            const amount = document.getElementById('amount').value;
+            const term = document.getElementById('term').value;
+            const purpose = document.getElementById('purpose').options[document.getElementById('purpose').selectedIndex].text;
+            
+            // Обновление элементов результата
+            document.getElementById('resultAmount').textContent = formatCurrency(amount) + ' ₽';
+            document.getElementById('resultTerm').textContent = term + ' месяцев';
+            document.getElementById('resultPurpose').textContent = purpose;
+            document.getElementById('resultScore').textContent = score.toFixed(1);
+            document.getElementById('resultRate').textContent = result.rate + '%';
+            document.getElementById('resultMaxAmount').textContent = formatCurrency(result.maxAmount) + ' ₽';
+            document.getElementById('resultMessage').textContent = result.message;
+            
+            // Обновление заголовка риска
+            const riskElement = document.getElementById('resultRisk');
+            riskElement.innerHTML = `
+                <span class="risk-level">${result.risk}</span>
+                <span class="risk-status">${result.approved ? 'кредит одобрен' : 'кредит не одобрен'}</span>
+            `;
+            
+            // Изменение цвета в зависимости от риска
+            const riskClass = result.risk === 'Низкий' ? 'low-risk' : 
+                            result.risk === 'Средний' ? 'medium-risk' : 'high-risk';
+            
+            riskElement.className = 'result-header ' + riskClass;
+        }
+
+        // Форматирование валюты
+        function formatCurrency(value) {
+            return Number(value).toLocaleString('ru-RU');
+        }
+
+        // Оформление заявки
+        function applyCredit() {
+            // Получение всех данных формы
+            const application = {
+                amount: document.getElementById('amount').value,
+                term: document.getElementById('term').value,
+                purpose: document.getElementById('purpose').value,
+                fio: document.getElementById('fio').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                citizen: document.querySelector('input[name="citizen"]:checked').value,
+                age: document.querySelector('input[name="age"]:checked').value,
+                marital: document.querySelector('input[name="marital"]:checked').value,
+                children: document.querySelector('input[name="children"]:checked').value,
+                car: document.querySelector('input[name="car"]:checked').value,
+                property: document.querySelector('input[name="property"]:checked').value,
+                income: document.querySelector('input[name="income"]:checked').value,
+                familyIncome: document.querySelector('input[name="familyIncome"]:checked').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Здесь можно отправить данные на сервер
+            console.log('Заявка отправлена:', application);
+            
+            // Сохранение в localStorage
+            localStorage.setItem('creditApplication', JSON.stringify(application));
+            
+            // Показать сообщение об успехе
+            alert('Заявка успешно отправлена! Наш менеджер свяжется с вами в течение 15 минут для уточнения деталей.');
+        }
+    </script>
+</body>
+</html>
+
